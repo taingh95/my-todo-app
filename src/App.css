@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 0.7rem;
+  background-color: #fcfcfc;
+  color: #1f1f1f;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid #1f1f1f;
+}
+
+.header-container {
+  background-color: #678c89;
+  color: #fff;
+  padding: 1.5rem;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  line-height: 0.7 rem;
+  text-align: center;
+}
+
+.todo-item {
+  list-style-type: none;
+  padding: 1.5rem;
+  border-top: 1px solid #678c89;
+  box-sizing: border-box;
+}
+
+.todo-item input {
+  margin-right: 1rem;
+}
+
+.completed {
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.btn-style {
+  font-size: 1rem;
+  background: #d35e0f;
+  color: #fff;
+  border: 1px solid #d35e0f;
+  border-radius: 60%;
+  cursor: pointer;
+  float: right;
+  padding: 0.1rem;
+}
+
+/* Add to ===========================================================================*/
+.form-container {
+  display: flex;
+  width: 100%;
+}
+.input-text {
+  flex: 8;
+  font-size: 14px;
+  padding: 6px 15px;
+  background: rgba(103, 140, 137, 0.65);
+  color: #fff;
+  outline: none;
+  font-weight: 400;
+  width: 80%;
+  border: none;
+}
+.input-text::placeholder {
+  color: #fff;
+  opacity: 0.8;
+}
+
+.input-submit {
+  flex: 2;
+  background: #678c89;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  width: 20%;
+  outline: none;
+  border: none;
+}
