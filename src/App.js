@@ -1,29 +1,27 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/layouts/Header";
 import TodoList from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
 
 //npm
-import uuid from "uuid";
-
-// initial data
-const todosData = [
-  {
-    id: 1,
-    title: "Setup development environment",
-    completed: true,
-  },
-  {
-    id: 2,
-    title: "Develop website and add content",
-    completed: false,
-  },
-  { id: 3, title: "Deploy to live server", completed: false },
-];
+import axios from "axios";
+import Footer from "./components/layouts/Footer";
 
 function App() {
-  const [todos, setTodo] = useState(todosData);
+  const [todos, setTodo] = useState([]);
+
+  //get API DB
+  useEffect(() => {
+    const config = {
+      params: {
+        _limit: 5,
+      },
+    };
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos", config)
+      .then((response) => setTodo(response.data));
+  }, []);
 
   //check compeleted todo
   const handleCheckboxChange = (id) => {
@@ -36,22 +34,27 @@ function App() {
 
   //delete todo
   const deleteTodo = (id) => {
-    setTodo(todos.filter(todo => {
-      return todo.id !== id
-    }))
+    setTodo(
+      todos.filter((todo) => {
+        return todo.id !== id;
+      })
+    );
   };
 
   //add todo
-  const addTodo = title => {
-    if(title) {
+  const addTodo = (title) => {
+    if (title) {
       let todo = {
-        id: uuid.v4(),
         title: title,
-        completed: false
-      }
-      setTodo([...todos,todo])
-    } 
-  }
+        completed: false,
+      };
+      axios
+        .post("https://jsonplaceholder.typicode.com/todos", todo)
+        .then((response) => {
+          setTodo([...todos, response.data]);
+        });
+    }
+  };
 
   return (
     <div className="App">
@@ -63,6 +66,7 @@ function App() {
           handleCheckboxChange={handleCheckboxChange}
           deleteTodo={deleteTodo}
         />
+        <Footer />
       </div>
     </div>
   );
